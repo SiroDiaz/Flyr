@@ -16,7 +16,7 @@ class Twig_View extends ViewAbstract {
 		));
 	}
 
-	public function render($params = [], $show = true) {
+	public function render($params = array(), $show = true) {
 		
 		if($this->exists()) {
 			if($show) {
@@ -37,8 +37,12 @@ class Twig_View extends ViewAbstract {
 	 * add filters, functions, etc.
 	 * ********************************************************/
 	 
-	 public function addFilter() {}
+	 public function filters($filter) {
+	 	$this->twig->addFilter($filter);
+	 }
 	 
-	 public function addFunction() {}
+	 public function functions($fun) {
+	 	$this->twig->addFunction($fun);
+	 }
 		
 }

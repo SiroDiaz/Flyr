@@ -148,7 +148,7 @@ class Route {
 					return;
 				}
 				
-				if($this->uriMatches()) {
+				if($this->uriMatches($caseSensitive)) {
 					$this->loadCallback($callback, $this->params);
 					self::$found = true;
 				}
@@ -175,7 +175,7 @@ class Route {
 					return;
 				}
 				
-				if($this->uriMatches()) {
+				if($this->uriMatches($caseSensitive)) {
 					// in this case the params atribute will be replace by $_POST
 					$this->loadCallback($callback, $_POST);
 					self::$found = true;
@@ -205,7 +205,7 @@ class Route {
 					return;
 				}
 				
-				if($this->uriMatches()) {
+				if($this->uriMatches($caseSensitive)) {
 					// in this case the params atribute will be replace by $_PUT
 					$this->loadCallback($callback, $_PUT);
 					self::$found = true;
@@ -233,7 +233,7 @@ class Route {
 				return;
 			}
 				
-			if($this->uriMatches()) {
+			if($this->uriMatches($caseSensitive)) {
 				// in this case the params atribute will be replace by $_PUT
 				$this->loadCallback($callback, $_DELETE);
 				self::$found = true;
@@ -298,14 +298,19 @@ class Route {
 	 * @return boolean true if matches 
 	 */
 	 
-	 private function uriMatches() {
+	 private function uriMatches($caseSensitive = false) {
 	 	$pattern = $this->stripUri($this->getFullPattern());
-		$uri = $this->stripUri(strtolower($this->url->getPath()));
+		if($caseSensitive === false) {
+			$uri = $this->stripUri(strtolower($this->url->getPath()));
+		} else {
+			$uri = $this->stripUri($this->url->getPath());
+		}
+		
 		
 		if(empty($uri[count($uri) - 1]) && !empty($pattern[count($pattern) - 1])) {
 			return false;
 		}
-		
+
 		if(count($pattern) === count($uri)) {
 			for($i = 0; $i < count($pattern); $i++) {
 				if($pattern[$i] !== $uri[$i] && !$this->isParam($pattern[$i])) {

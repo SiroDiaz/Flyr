@@ -36,32 +36,32 @@ class Flyr {
 	 * Generate a get router.
 	 */
 	
-	public function get($pattern, $callback) {
-		$this->route->get($pattern, $callback);
+	public function get($pattern, $callback, $caseSensitive = false) {
+		$this->route->get($pattern, $callback, $caseSensitive);
 	}
 	
 	/**
 	 * Generate a post router.
 	 */
 	
-	public function post($pattern, $callback) {
-		$this->route->post($pattern, $callback);
+	public function post($pattern, $callback, $caseSensitive = false) {
+		$this->route->post($pattern, $callback, $caseSensitive);
 	}
 	
 	/**
 	 * Generate a put router.
 	 */
 	
-	public function put($pattern, $callback) {
-		$this->route->put($pattern, $callback);
+	public function put($pattern, $callback, $caseSensitive = false) {
+		$this->route->put($pattern, $callback, $caseSensitive);
 	}
 	
 	/**
 	 * Generate a delete router.
 	 */
 	
-	public function delete($pattern, $callback) {
-		$this->route->delete($pattern, $callback);
+	public function delete($pattern, $callback, $caseSensitive = false) {
+		$this->route->delete($pattern, $callback, $caseSensitive);
 	}
 	
 	/** Next version will add support for patch method

@@ -7,7 +7,14 @@ class PHP_View extends ViewAbstract {
 		$this->setFolder(TEMPLATE_DIR);
 	}
 	
-	public function render($params, $show = true) {
+	/**
+	 * Method that render a PHP template.
+	 * 
+	 * @param array $params The contained information to render
+	 * @param bool $show False if the view will be stored in a variable
+	 */
+	
+	public function render($params = array(), $show = true) {
 		if($this->exists()) {
 				
 			if(is_array($params)) {
