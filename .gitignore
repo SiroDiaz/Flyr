@@ -1,8 +1,6 @@
 vendor
 /.idea
 /vendor
-/app/storage/cache
-/app/storage/logs
 .DS_Store
 composer.phar
 composer.lock

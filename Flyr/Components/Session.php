@@ -59,4 +59,13 @@ class Session {
 			$this->delete($key);
 		}
 	}
+	
+	/**
+	 * Clear all sessions and close them
+	 */
+		
+	public function close() {
+		$this->deleteAll();
+		session_destroy();
+	}
 }

@@ -44,5 +44,5 @@ class Twig_View extends ViewAbstract {
 	 public function functions($fun) {
 	 	$this->twig->addFunction($fun);
 	 }
-		
+	 
 }
