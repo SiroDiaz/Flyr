@@ -21,14 +21,14 @@ $app->session->start();
 
 $app->get('/', 'Welcome_Controller@index');
 
-$app->put('/', function($id, $val) use ($app) {
-	echo "$put $val";
+$app->any('/', function($id, $val) use ($app) {
+	echo "$id $val";
 });
 
 $app->delete('/', function($id, $val) use ($app) {
 	echo "$id and $val";
 });
 
-$app->get('*', function() use ($app) {
+$app->any('*', function() use ($app) {
 	echo "404, page not found";
 });

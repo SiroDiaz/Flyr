@@ -41,6 +41,16 @@ class Route {
 	}
 	
 	/**
+	 * Returns the request method.
+	 * 
+	 * @return string
+	 */
+	 
+	public function getMethod() {
+		return $this->method;
+	}
+	
+	/**
 	 * Get all url parameters.
 	 * 
 	 * @return array|mixed
@@ -163,6 +173,7 @@ class Route {
 	 * 
 	 * @param string $uri The requested uri pattern
 	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
 	 */
 	
 	public function post($pattern, $callback = null, $caseSensitive = false) {
@@ -189,6 +200,7 @@ class Route {
 	 * 
 	 * @param string $uri The requested uri pattern
 	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
 	 */
 	
 	public function put($pattern, $callback = null, $caseSensitive = false) {
@@ -219,38 +231,58 @@ class Route {
 	 * 
 	 * @param string $uri The requested uri pattern
 	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
 	 */
 	
 	public function delete($pattern, $callback = null, $caseSensitive = false) {
-		$this->setPattern($pattern);
-		parse_str(file_get_contents("php://input"), $_DELETE);
-		if($this->isDelete()) {
-			// when * is found load the callback(or controller) and then exit
-			// must be set at the end of routes.php
-			if($this->pattern === '*') {
-				$this->loadCallback($callback);
-				self::$found = true;
-				return;
-			}
-				
-			if($this->uriMatches($caseSensitive)) {
-				// in this case the params atribute will be replace by $_PUT
-				$this->loadCallback($callback, $_DELETE);
-				self::$found = true;
+		if(!self::$found) {
+			$this->setPattern($pattern);
+			parse_str(file_get_contents("php://input"), $_DELETE);
+			if($this->isDelete()) {
+				// when * is found load the callback(or controller) and then exit
+				// must be set at the end of routes.php
+				if($this->pattern === '*') {
+					$this->loadCallback($callback);
+					self::$found = true;
+					return;
+				}
+					
+				if($this->uriMatches($caseSensitive)) {
+					// in this case the params atribute will be replace by $_PUT
+					$this->loadCallback($callback, $_DELETE);
+					self::$found = true;
+				}
 			}
 		}
 	}
 	
 	/**
+	 * Respond any request verb
 	 * 
+	 * @param string $pattern
+	 * @param callable|string $callback
+	 * @param bool $caseSensitive (default false)
 	 */
-	 
-	public function patch($pattern, $callback, $caseSensitive = false) {
-		$this->setPattern($pattern);
-		parse_str(file_get_contents('php://input'), $_PATCH);
-		
-		if($this->method === 'PATCH') {
-			var_dump($_PATCH);
+	
+	public function any($pattern, $callback = null, $caseSensitive = false) {
+		if(!self::$found) {
+
+			switch($this->getMethod()) {
+				case 'GET':
+					$this->get($pattern, $callback, $caseSensitive);
+					break;
+				case 'POST':
+					$this->post($pattern, $callback, $caseSensitive);
+					break;
+				case 'PUT':
+					$this->put($pattern, $callback, $caseSensitive);
+					break;
+				case 'DELETE':
+					$this->delete($pattern, $callback, $caseSensitive);
+					break;
+				default:
+					exit('Unknown Request method');
+			}
 		}
 	}
 	

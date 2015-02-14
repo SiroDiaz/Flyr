@@ -64,11 +64,13 @@ class Flyr {
 		$this->route->delete($pattern, $callback, $caseSensitive);
 	}
 	
-	/** Next version will add support for patch method
+	/**
+	 * Responses to any HTTP method.
+	 */
 	
-	public function patch($pattern, $callback = null) {
-		$this->route->patch($pattern, $callback);
+	public function any($pattern, $callback, $caseSensitive = false) {
+		$this->route->any($pattern, $callback, $caseSensitive);
 	}
-	*/
+	
 	
 }
