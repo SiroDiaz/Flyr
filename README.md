@@ -74,7 +74,7 @@ If you can catch 404 pages and set a default web page or response you can set **
 // .
 // .
 // .
-$app->get('*', function() {
+$app->any('*', function() {
 	// do something right here
 });
 ```

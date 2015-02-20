@@ -396,7 +396,7 @@ class Route {
 				if(class_exists($className) && method_exists($className, $methodName)){
 					$instance = new $className();	// new class instance
 					if(count($params) !== 0) {
-						return call_user_func($instance, $methodName, $params);
+						return call_user_func_array([$instance, $methodName], $params);
 					}
 					
 					return $instance->$methodName();
