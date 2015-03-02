@@ -6,6 +6,8 @@
 				              /____/          
 
 
+[![Build Status](https://travis-ci.org/SiroDiaz/Flyr.svg)](https://travis-ci.org/SiroDiaz/Flyr)
+
 # Flyr: The PHP micro Framework for develop fast REST applications.
 
 **Flyr** is a micro famework designed to create REST applications easily and
