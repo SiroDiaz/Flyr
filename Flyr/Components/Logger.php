@@ -8,15 +8,17 @@ class Logger {
 	
 	private $properties = [];
 	
-	public function __construct() {
-		
-	}
+	public function __construct() {}
 	
 	/**
+	 *  Generate the log data to be registered.
 	 * 
+	 * @param mixed $properties The message container
+	 * @param string $level The log level
 	 */
 	
-	private function setError($properties, $level) {
+	public function setLog($properties, $level) {
+		// case for try/catch statement
 		if($properties instanceof \Exception) {
 			$this->properties = [
 				'errlevel' => $level,
@@ -34,6 +36,26 @@ class Logger {
 				'time' => date("Y-m-d H:i:s")
 			];
 		}
+	}
+	
+	/**
+	 * Returns log properties.
+	 * 
+	 * @return array
+	 */
+	 
+	public function getProperties() {
+		return $this->properties;
+	}
+	
+	/**
+	 * Returns the log level defined.
+	 * 
+	 * @return string
+	 */
+	 
+	public function getLogLevel() {
+		return $this->getProperties()['errlevel'];
 	}
 	
 	/**
@@ -106,8 +128,8 @@ class Logger {
 	 * as a JSON format and close the file
 	 */
 	
-	private function save($error, $level) {
-		$this->setError($error, $level);
+	private function save($log, $level) {
+		$this->setLog($log, $level);
 		$file = $this->getFilehandler();
 		if(count($this->properties)) {
 			fwrite($file, json_encode($this->properties, JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ."\n");
