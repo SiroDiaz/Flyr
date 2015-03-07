@@ -1,10 +1,10 @@
-<img src="oi59.tinypic.com/348k8x0.jpg" alt="Flyr micro-framework" title="Flyr micro-framework" />
 				_______________               
 				___  ____/__  /____  _________
 				__  /_   __  /__  / / /_  ___/
 				_  __/   _  / _  /_/ /_  /    
 				/_/      /_/  _\__, / /_/     
 				              /____/          
+
 
 [![Build Status](https://travis-ci.org/SiroDiaz/Flyr.svg)](https://travis-ci.org/SiroDiaz/Flyr)
 
