@@ -2,6 +2,7 @@
     "name": "flyr/flyr",
     "description": "The micro PHP Framework based for develop fast REST applications.",
     "license": "MIT",
+    "keywords": ["framework", "flyr"],
     "authors": [
         {
             "name": "Siro Diaz Palazon",

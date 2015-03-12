@@ -23,7 +23,7 @@ can use Propel which have a great documentation.
 
 You can download Flyr from the .zip file or using Composer running this command
 
-	$ composer create-project "flyr/flyr":"0.1.*@dev"
+	$ composer create-project "flyr/flyr":"1.0.*@dev"
 
 ### **Simple tutorial**
 
