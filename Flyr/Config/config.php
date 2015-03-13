@@ -27,13 +27,7 @@ if((float)PHP_VERSION < 5.4) exit('You must install PHP >= 5.4 version');
 |
 */
 
-define('LOG', true);
-
-# enable the log path if user activate the logging system
-
-if(LOG === true){
-	define('LOG_PATH', __DIR__ .'/../../app/storage/logs/');
-}
+define('LOG_PATH', __DIR__ .'/../../app/storage/logs/');
 
 /*
 |--------------------------------------------------------------------------
@@ -107,9 +101,6 @@ define('CONTROLLER_PATH', __DIR__ .'/../../app/controllers/');
 
 # You can change the session name
 define('SESSION_NAME', 'FLYRSSID');
-# uncomment the following line if you want to save sessions in the storage folder
-// define('SESSION_DIR', __DIR__ .'/../app/storage/sessions/tmp');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -126,7 +117,7 @@ define('SESSION_NAME', 'FLYRSSID');
 |
 */
 
-# yoy MUST modify the secure key
+# yoy MUST modify the secure key and also, if you want, the hash algorithm
 define('COOKIE_KEY', md5('KEY'));
 
 
