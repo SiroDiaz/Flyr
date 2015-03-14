@@ -21,7 +21,7 @@ $app->session->start();
 
 $app->get('/', 'Welcome_Controller@index');
 
-$app->any('/', function($id, $val) use ($app) {
+$app->post('/', function($id, $val) use ($app) {
 	echo "$id $val";
 });
 

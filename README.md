@@ -483,7 +483,7 @@ Maybe you want to manipule the HTTP response header in any page. You can have ac
 * set(array $headers)
 * remove($header)
 * getCode()
-* send($statusCode)
+* status($statusCode)
 * get()
 
 See the following examples using header object.

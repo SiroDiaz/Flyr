@@ -87,7 +87,6 @@ define('TEMPLATE_CACHE_DIR', __DIR__ .'/../../app/storage/cache/');
 
 define('CONTROLLER_PATH', __DIR__ .'/../../app/controllers/');
 
-
 /*
 |--------------------------------------------------------------------------
 | Application Sessions
@@ -144,9 +143,7 @@ define('LANGS_PATH', __DIR__ .'/../../app/lang/');
 |
 */
 
-
 define('HELPERS_PATH', __DIR__ .'/../../app/helpers/');
-
 
 /*
 |--------------------------------------------------------------------------
@@ -159,41 +156,6 @@ define('HELPERS_PATH', __DIR__ .'/../../app/helpers/');
 */
 
 define('INTERNAL_ENCODING', 'UTF-8');
-
-/*
-|--------------------------------------------------------------------------
-| Application URL (Deprecated)
-|--------------------------------------------------------------------------
-|
-| This URL is used by the framework to properly generate URLs when using
-| routes and you place your app in a different place that the root app.
-| By the way, you can also have multiple projects in your web server.
-| You should set this to the root of your application.
-|
-*/
-
-# IMPORTANT! do not put a slash at the end of the BASEPATH.
-# You can cause an error
-# define('BASEPATH', 'http://localhost/tweetbeeg');
-
-
-/*
-|--------------------------------------------------------------------------
-| Application Update Mode
-|--------------------------------------------------------------------------
-|
-| When your application is been updated in realtime you could want to
-| so to the user a message telling why he can make use of your
-| application. If disabled, a simple generic message is shown.
-|
-*/
-
-define('ACTUALIZE', false);
-define('ACTUALIZE_PAGE', '');
-
-if(ACTUALIZE){
-	exit('page under update. Please wait a momment');
-}
 
 /*
 |--------------------------------------------------------------------------

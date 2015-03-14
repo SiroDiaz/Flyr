@@ -3,10 +3,10 @@
 class Header {
 	
 	/**
-	 * Send a custom HTTP code.
+	 * Send a custom HTTP status code.
 	 */
 	 
-	public function send($code) {
+	public function status($code) {
 		http_response_code($code);
 	}
 	
