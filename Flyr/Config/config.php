@@ -50,20 +50,6 @@ if(DEBUG){
 
 /*
 |--------------------------------------------------------------------------
-| Application Core Path
-|--------------------------------------------------------------------------
-|
-| When you want to extend the framework functionality you must write your
-| code inside the CORE_PATH directory. The following you must do when add new
-| features is add to the libraries.php file the class name and the path to be
-| auto loaded.
-|
-*/
-
-define('CORE_PATH', __DIR__ .'/../../app/core/');
-
-/*
-|--------------------------------------------------------------------------
 | View and Template system
 |--------------------------------------------------------------------------
 |

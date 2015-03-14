@@ -1,22 +1,5 @@
 <?php
 
-if (!defined('FLYR')) exit('No direct script access allowed');
-
-/**
- * HTTP security headers
- * prevent to be integrated inside iframes, frames, etc.
- * prevent sniffing atacks
- * prevent xss attacks
- */
-
-// header('Access-Control-Allow-Origin: *');
-// header('Access-Control-Allow-Methods: POST, GET');
-// header('x-frame-options: SAMEORIGIN');
-// header('x-ua-compatible:IE=edge,chrome=1');
-// header('x-xss-protection:1; mode=block');
-// header('x-Content-Type-Options: nosniff');
-// header_remove('X-Powered-By');
-
 /**
  * set the default internal encoding(UTF-8 by default)
  * you can change it in config/app_config
@@ -34,7 +17,6 @@ if(function_exists('mb_internal_encoding')) {
  */
 
 ini_set('session.name', SESSION_NAME);
-// ini_set('session.save_path', SESSION_DIR);
 ini_set('expose_php', 'off');
 ini_set('session.use_trans_sid', '0');
 ini_set('session.hash_function', 'sha512');

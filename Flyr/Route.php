@@ -338,13 +338,15 @@ class Route {
 			$uri = $this->stripUri($this->url->getPath());
 		}
 		
+		$uriLength = count($uri);
+		$patternLength = count($pattern);
 		
-		if(empty($uri[count($uri) - 1]) && !empty($pattern[count($pattern) - 1])) {
+		if(empty($uri[$uriLength - 1]) && !empty($pattern[$patternLength - 1])) {
 			return false;
 		}
 
-		if(count($pattern) === count($uri)) {
-			for($i = 0; $i < count($pattern); $i++) {
+		if($patternLength === $uriLength) {
+			for($i = 0; $i < $patternLength; $i++) {
 				if($pattern[$i] !== $uri[$i] && !$this->isParam($pattern[$i])) {
 					return false;
 				} else {

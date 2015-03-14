@@ -1,7 +1,5 @@
 <?php namespace Flyr;
 
-if(!defined('FLYR')) exit('No direct script access allowed');
-
 class Flyr {
 	
 	public $header;
