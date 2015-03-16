@@ -193,7 +193,7 @@ class Mail {
 
 	public function emailAttachFiles($file) {
 		if($this->isValidFile($file)) {
-			$this->mail->addAttachment($files);
+			$this->mail->addAttachment($file);
 		}
 	}
 	
