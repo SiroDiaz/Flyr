@@ -25,6 +25,8 @@ $app->post('/', function($id, $val) use ($app) {
 	echo "$id $val";
 });
 
+$app->both(['GET', 'POST'], '/both', 'Welcome_Controller@index');
+
 $app->delete('/', function($id, $val) use ($app) {
 	echo "$id and $val";
 });

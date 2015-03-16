@@ -34,7 +34,7 @@ class Flyr {
 	 * Generate a get router.
 	 */
 	
-	public function get($pattern, $callback, $caseSensitive = false) {
+	public function get($pattern, $callback = null, $caseSensitive = false) {
 		$this->route->get($pattern, $callback, $caseSensitive);
 	}
 	
@@ -42,7 +42,7 @@ class Flyr {
 	 * Generate a post router.
 	 */
 	
-	public function post($pattern, $callback, $caseSensitive = false) {
+	public function post($pattern, $callback = null, $caseSensitive = false) {
 		$this->route->post($pattern, $callback, $caseSensitive);
 	}
 	
@@ -50,7 +50,7 @@ class Flyr {
 	 * Generate a put router.
 	 */
 	
-	public function put($pattern, $callback, $caseSensitive = false) {
+	public function put($pattern, $callback = null, $caseSensitive = false) {
 		$this->route->put($pattern, $callback, $caseSensitive);
 	}
 	
@@ -58,15 +58,23 @@ class Flyr {
 	 * Generate a delete router.
 	 */
 	
-	public function delete($pattern, $callback, $caseSensitive = false) {
+	public function delete($pattern, $callback = null, $caseSensitive = false) {
 		$this->route->delete($pattern, $callback, $caseSensitive);
+	}
+	
+	/**
+	 * Responses to any matched HTTP request method.
+	 */
+	 
+	public function both(array $methods, $pattern, $callback = null, $caseSensitive = false) {
+		$this->route->both($methods, $pattern, $callback, $caseSensitive);
 	}
 	
 	/**
 	 * Responses to any HTTP method.
 	 */
 	
-	public function any($pattern, $callback, $caseSensitive = false) {
+	public function any($pattern, $callback = null, $caseSensitive = false) {
 		$this->route->any($pattern, $callback, $caseSensitive);
 	}
 	

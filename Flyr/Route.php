@@ -164,14 +164,12 @@ class Route {
 				}
 			}
 		}
-		
-		return $this;
 	}
 	
 	/**
 	 * Execute the POST request.
 	 * 
-	 * @param string $uri The requested uri pattern
+	 * @param string $pattern The requested uri pattern
 	 * @param mixed $callback A function or a class method
 	 * @param bool $caseSensitive (default false)
 	 */
@@ -198,7 +196,7 @@ class Route {
 	/**
 	 * Execute the PUT request.
 	 * 
-	 * @param string $uri The requested uri pattern
+	 * @param string $pattern The requested uri pattern
 	 * @param mixed $callback A function or a class method
 	 * @param bool $caseSensitive (default false)
 	 */
@@ -229,7 +227,7 @@ class Route {
 	/**
 	 * Execute the DELETE request.
 	 * 
-	 * @param string $uri The requested uri pattern
+	 * @param string $pattern The requested uri pattern
 	 * @param mixed $callback A function or a class method
 	 * @param bool $caseSensitive (default false)
 	 */
@@ -253,6 +251,37 @@ class Route {
 					self::$found = true;
 				}
 			}
+		}
+	}
+	
+	/**
+	 * It respond the same for any passed callback.
+	 * 
+	 * @param array $methods The request methods availables for matching
+	 * @param string $pattern The requested uri pattern
+	 * @param mixed $callback A function or the controller name
+	 * @param bool $caseSensitive (default false)
+	 */
+	  
+	public function both(array $methods, $pattern, $callback = null, $caseSensitive = false) {
+		$totalMethods = count($methods);
+		
+		// Setting all methods in upper case
+		for ($i = 0; $i < $totalMethods; $i++) {
+			$methods[$i] = strtoupper($methods[$i]);
+		}
+		
+		if ($this->isGet() && in_array('GET', $methods)) {
+			$this->get($pattern, $callback, $caseSensitive);
+		} elseif($this->isPost() && in_array('POST', $methods)) {
+			$this->post($pattern, $callback, $caseSensitive);
+		} elseif($this->isPut() && in_array('PUT', $methods)) {
+			$this->put($pattern, $callback, $caseSensitive);
+		} elseif($this->isDelete() && in_array('DELETE', $methods)) {
+			$this->delete($pattern, $callback, $caseSensitive);
+		} else {
+			// in case of 
+			$this->get($pattern, $callback, $caseSensitive);
 		}
 	}
 	
@@ -281,7 +310,8 @@ class Route {
 					$this->delete($pattern, $callback, $caseSensitive);
 					break;
 				default:
-					exit('Unknown Request method');
+					// in case that the request method be unknow
+					$this->get($pattern, $callback, $caseSensitive);
 			}
 		}
 	}
@@ -338,8 +368,8 @@ class Route {
 			$uri = $this->stripUri($this->url->getPath());
 		}
 		
-		$uriLength = count($uri);
-		$patternLength = count($pattern);
+		$uriLength = count($uri);		// takes the number of uri fragments
+		$patternLength = count($pattern);	// takes the number of pattern fragments
 		
 		if(empty($uri[$uriLength - 1]) && !empty($pattern[$patternLength - 1])) {
 			return false;
@@ -362,13 +392,6 @@ class Route {
 		return false;
 	 }
 	 
-	/**
-	 * 
-	 */
-	  
-	public function both() {
-		
-	}
 	
 	/**
 	 * Execute the callback or the method from a class controller.
