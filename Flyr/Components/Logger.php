@@ -55,7 +55,7 @@ class Logger {
 	 */
 	 
 	public function getLogLevel() {
-		return $this->getProperties()['errlevel'];
+		return $this->getProperties()['loglevel'];
 	}
 	
 	/**
