@@ -75,8 +75,8 @@ class Logger {
 	 */
 	
 	private function getFileHandler() {
-		$filePath = LOG_PATH ."flyr-". date("Y-m-d") .".log";
-		if(file_exists($filePath)) {
+		$filePath = 'flyr-'. date("Y-m-d");
+		if($this->fileExists($filePath)) {
 			return fopen($filePath, 'a');
 		}
 		
