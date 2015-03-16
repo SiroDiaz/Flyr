@@ -10,7 +10,7 @@ class LoggerTest extends PHPUnit_Framework_TestCase {
 	
 	public function testGetProperties() {
 		$properties = [
-				'errlevel' => 'Warning',
+				'loglevel' => 'Warning',
 				'message' => 'Some log message',
 				'time' => date("Y-m-d H:i:s")
 		];
@@ -21,13 +21,13 @@ class LoggerTest extends PHPUnit_Framework_TestCase {
 	
 	public function testGetLogLevel() {
 		$properties = [
-				'errlevel' => 'Warning',
+				'loglevel' => 'Warning',
 				'message' => 'Some log message',
 				'time' => date("Y-m-d H:i:s")
 		];
 		
 		$this->log->setLog('Some log message', Flyr\Components\Logger::WARNING);
-		$this->assertEquals($properties['errlevel'], $this->log->getLogLevel());
+		$this->assertEquals($properties['loglevel'], $this->log->getLogLevel());
 	}
 	
 }
