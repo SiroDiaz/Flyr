@@ -3,6 +3,10 @@
 class Cookie {
 	
 	private $key;
+	 
+	public function __construct() {
+		$this->key = COOKIE_KEY;
+	}
 	
 	/**
 	 * Create a new cookie with default parameters.
@@ -12,10 +16,6 @@ class Cookie {
 	 * @param mixed $options An array of options or a default array
 	 * @return bool true if the cookie is defined
 	 */
-	 
-	public function __construct() {
-		$this->key = COOKIE_KEY;
-	}
 	
 	public function create($key, $value, $options = null) {
 		if($options === null || (is_array($options) && count($options) < 4)) {
