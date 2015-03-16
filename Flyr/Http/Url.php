@@ -79,22 +79,4 @@ class Url {
         return parse_url($this->url, PHP_URL_FRAGMENT);
     }
 
-    public function parse_decode($query, $q) {
-        if (strlen(trim($query)) == 0) {
-            return [];
-        }
-        $query = urldecode($query);
-        $keyval = [[], []];
-        foreach(explode('&', $query) as $chunk) {
-            $param = explode('=', $chunk);
-            array_push($keyval[0], $param[0]);
-            array_push($keyval[1], $param[1]);
-        }
-        return $keyval;
-    }
-
-    public function encode($url) {
-        return urlencode($url);
-    }
-
 }
