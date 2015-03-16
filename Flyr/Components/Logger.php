@@ -96,7 +96,7 @@ class Logger {
 	/**
 	 * Save an info log.
 	 * 
-	 * @param mixed|string
+	 * @param mixed|string $message
 	 */
 	
 	public function logInfo($message) {
@@ -106,7 +106,7 @@ class Logger {
 	/**
 	 * Save a debug log.
 	 * 
-	 * @param mixed|string
+	 * @param mixed|string $message
 	 */
 	
 	public function logDebug($message) {
@@ -116,7 +116,7 @@ class Logger {
 	/**
 	 * Save an error log.
 	 * 
-	 * @param mixed|string
+	 * @param mixed|string $message
 	 */
 	
 	public function logError($message) {

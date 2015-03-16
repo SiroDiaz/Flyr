@@ -2,6 +2,7 @@
 ======================================================
 [![Build Status](https://travis-ci.org/SiroDiaz/Flyr.svg)](https://travis-ci.org/SiroDiaz/Flyr)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/SiroDiaz/Flyr/badges/quality-score.png?b=1.0)](https://scrutinizer-ci.com/g/SiroDiaz/Flyr/?branch=1.0)
+[![Coverage Status](https://coveralls.io/repos/SiroDiaz/Flyr/badge.svg)](https://coveralls.io/r/SiroDiaz/Flyr)
 
 # Flyr: The PHP micro Framework for develop fast REST applications.
 
