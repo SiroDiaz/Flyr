@@ -18,10 +18,10 @@ class Logger {
 	 */
 	
 	public function setLog($properties, $level) {
-		// case for try/catch statement
+		// case for exceptions
 		if($properties instanceof \Exception) {
 			$this->properties = [
-				'errlevel' => $level,
+				'loglevel' => $level,
 				'errdate' => date("Y-m-d H:i:s"),
 				'message' => $properties->getMessage(),
 				'code' => ($properties->getCode()) ? $properties->getCode() : 0,
@@ -31,7 +31,7 @@ class Logger {
 			];
 		} else {
 			$this->properties = [
-				'errlevel' => $level,
+				'loglevel' => $level,
 				'message' => $properties,
 				'time' => date("Y-m-d H:i:s")
 			];
@@ -126,6 +126,9 @@ class Logger {
 	/**
 	 * Save the error data inside a log file
 	 * as a JSON format and close the file
+	 * 
+	 * @param mixed $log Data to save or send
+	 * @param string $level The Logging level
 	 */
 	
 	private function save($log, $level) {
@@ -138,7 +141,12 @@ class Logger {
 	}
 	
 	/**
+	 * Send an email with the log data.
 	 * 
+	 * @param string $template The view to render
+	 * @param mixed $from
+	 * @param mixed $to
+	 * @param string $subject
 	 */
 	
 	public function sendEmail($template, $from, $to, $subject) {
@@ -151,18 +159,3 @@ class Logger {
 		);
 	}
 }
-
-/*
-
-function logerror($e = null) {
-	if($e instanceof Exception) {
-		echo "ok";
-	} else {
-		echo "noo";
-	}
-	
-	$arr = debug_backtrace();
-	var_dump($arr[0]);
-}
-
-*/
