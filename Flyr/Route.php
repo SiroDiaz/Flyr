@@ -1,22 +1,16 @@
 <?php namespace Flyr;
 
-class Route {
-	
-	const GET_METHOD = 'GET';
-	const POST_METHOD = 'POST';
-	const PUT_METHOD = 'PUT';
-	const DELETE_METHOD = 'DELETE';
+class Route extends Http\Request {
 	
 	const SEPARATOR = '@';			// the separator between the class name and the method name
 	private static $found = false;	// it is used to stop checking requests
 	private $pattern;				// the uri pattern
-	private $method;
 	private $url;
 	private $params;
 	
 	public function __construct() {
+		parent::__construct();
 		$this->url = new Http\Url();
-		$this->setRequestedMethod();
 		$this->params = [];
 	}
 	
@@ -38,16 +32,6 @@ class Route {
 	 
 	public function getPattern() {
 		return $this->pattern;
-	}
-	
-	/**
-	 * Returns the request method.
-	 * 
-	 * @return string
-	 */
-	 
-	public function getMethod() {
-		return $this->method;
 	}
 	
 	/**
@@ -79,14 +63,6 @@ class Route {
 	}
 	
 	/**
-	 * Set the http request method used to uppercase.
-	 */
-	
-	private function setRequestedMethod() {
-		$this->method = strtoupper(getenv('REQUEST_METHOD'));
-	}
-	
-	/**
 	 * Set the pattern and put it to lowercase.
 	 * 
 	 * @return boolean
@@ -96,46 +72,6 @@ class Route {
 		if(is_string($pattern) && $pattern) {
 			$this->pattern = strtolower($pattern);
 		}
-	}
-	
-	/**
-	 * Checks if it is a GET request.
-	 * 
-	 * @return bool
-	 */
-	 
-	private function isGet() {
-		return $this->method === self::GET_METHOD;
-	}
-	
-	/**
-	 * Checks if it is a POST request.
-	 * 
-	 * @return bool
-	 */
-	 
-	private function isPost() {
-		return $this->method === self::POST_METHOD;
-	}
-	
-	/**
-	 * Checks if it is a PUT request.
-	 * 
-	 * @return bool
-	 */
-	 
-	private function isPut() {
-		return $this->method === self::PUT_METHOD;
-	}
-	
-	/**
-	 * Checks if it is a DELETE request.
-	 * 
-	 * @return bool
-	 */
-	
-	private function isDelete() {
-		return $this->method === self::DELETE_METHOD;
 	}
 	
 	/**
