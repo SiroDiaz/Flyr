@@ -103,5 +103,16 @@ class Flyr {
 		$this->route->any($pattern, $callback, $caseSensitive);
 	}
 	
+	/**
+	 * Get access to request class for getting
+	 * access to the demanded request.
+	 * 
+	 * @return object Request class instance
+	 */
+	
+	public function request() {
+		return new Http\Request();
+	}
+	
 	
 }
