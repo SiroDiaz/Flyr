@@ -122,7 +122,7 @@ class Route extends Http\Request {
 				
 				if($this->uriMatches($caseSensitive)) {
 					// in this case the params atribute will be replace by $_POST
-					$this->loadCallback($callback, $_POST);
+					$this->loadCallback($callback, $this->params);
 					self::$found = true;
 				}
 			}
@@ -140,7 +140,7 @@ class Route extends Http\Request {
 	public function put($pattern, $callback = null, $caseSensitive = false) {
 		if(!self::$found) {
 			$this->setPattern($pattern);
-			parse_str(file_get_contents("php://input"), $_PUT);
+			// parse_str(file_get_contents("php://input"), $_PUT);
 			
 			if($this->isPut()) {
 				// when * is found load the callback(or controller) and then exit
@@ -153,7 +153,7 @@ class Route extends Http\Request {
 				
 				if($this->uriMatches($caseSensitive)) {
 					// in this case the params atribute will be replace by $_PUT
-					$this->loadCallback($callback, $_PUT);
+					$this->loadCallback($callback, $this->params);
 					self::$found = true;
 				}
 			}
@@ -171,7 +171,7 @@ class Route extends Http\Request {
 	public function delete($pattern, $callback = null, $caseSensitive = false) {
 		if(!self::$found) {
 			$this->setPattern($pattern);
-			parse_str(file_get_contents("php://input"), $_DELETE);
+			// parse_str(file_get_contents("php://input"), $_DELETE);
 			if($this->isDelete()) {
 				// when * is found load the callback(or controller) and then exit
 				// must be set at the end of routes.php
@@ -183,7 +183,7 @@ class Route extends Http\Request {
 					
 				if($this->uriMatches($caseSensitive)) {
 					// in this case the params atribute will be replace by $_PUT
-					$this->loadCallback($callback, $_DELETE);
+					$this->loadCallback($callback, $this->params);
 					self::$found = true;
 				}
 			}

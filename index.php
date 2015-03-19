@@ -21,14 +21,18 @@ $app->session->start();
 
 $app->get('/', 'Welcome_Controller@index');
 
-$app->post('/', function($id, $val) use ($app) {
-	echo "$id $val";
+$app->post('/', function() use ($app) {
+	echo "You have used a post method!";
 });
 
 $app->both(['GET', 'POST'], '/both', 'Welcome_Controller@index');
 
-$app->delete('/', function($id, $val) use ($app) {
-	echo "$id and $val";
+$app->put('/', function() use ($app) {
+	echo "You have used a put method!";
+});
+
+$app->delete('/', function() use ($app) {
+	echo "You have used a delete method!";
 });
 
 $app->any('*', function() use ($app) {
