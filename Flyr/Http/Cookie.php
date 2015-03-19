@@ -25,6 +25,10 @@ class Cookie {
 				$options = array('expire' => (time() + 3600), 'httpOnly' => true, 'domain' => '', 'path' => '/');
 			}
 		}
+		
+		if(is_string($options['expire']) && !empty($options['expire'])) {
+			$options['expire'] = strtotime($options['expire']);
+		}
 
 		return setcookie(
 				$key, $this->encryptCookie($value),

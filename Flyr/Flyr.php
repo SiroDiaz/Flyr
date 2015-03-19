@@ -32,6 +32,10 @@ class Flyr {
 	
 	/**
 	 * Generate a get router.
+	 * 
+	 * @param string $pattern The requested uri pattern
+	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
 	 */
 	
 	public function get($pattern, $callback = null, $caseSensitive = false) {
@@ -40,6 +44,10 @@ class Flyr {
 	
 	/**
 	 * Generate a post router.
+	 * 
+	 * @param string $pattern The requested uri pattern
+	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
 	 */
 	
 	public function post($pattern, $callback = null, $caseSensitive = false) {
@@ -48,6 +56,10 @@ class Flyr {
 	
 	/**
 	 * Generate a put router.
+	 * 
+	 * @param string $pattern The requested uri pattern
+	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
 	 */
 	
 	public function put($pattern, $callback = null, $caseSensitive = false) {
@@ -56,6 +68,10 @@ class Flyr {
 	
 	/**
 	 * Generate a delete router.
+	 * 
+	 * @param string $pattern The requested uri pattern
+	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
 	 */
 	
 	public function delete($pattern, $callback = null, $caseSensitive = false) {
@@ -64,6 +80,11 @@ class Flyr {
 	
 	/**
 	 * Responses to any matched HTTP request method.
+	 * 
+	 * @param array $methods Valid methods for this uri pattern
+	 * @param string $pattern The requested uri pattern
+	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
 	 */
 	 
 	public function both(array $methods, $pattern, $callback = null, $caseSensitive = false) {
@@ -72,6 +93,10 @@ class Flyr {
 	
 	/**
 	 * Responses to any HTTP method.
+	 * 
+	 * @param string $pattern The requested uri pattern
+	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
 	 */
 	
 	public function any($pattern, $callback = null, $caseSensitive = false) {
