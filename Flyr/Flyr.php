@@ -2,32 +2,40 @@
 
 class Flyr {
 	
-	public $header;
-	public $env;
 	public $cookie;
 	public $load;
 	public $log;
 	public $mail;
 	private $route;
-	public $session;
-	public $url;
-	public $view;
 	
 	/**
 	 * Instance all core classes.
 	 */
 	
 	public function __construct() {
-		$this->header = new Http\Header();
-		$this->env = new Http\Environment();
 		$this->cookie = new Http\Cookie();
 		$this->log = new Components\Logger();
 		$this->load = new Loader();
 		$this->mail = new Mail();
 		$this->route = new Route();
-		$this->session = new Components\Session();
-		$this->url = new Http\Url();
-		$this->view = new View();
+	}
+	
+	/**
+	 * Implementing singleton pattern to avoid
+	 * duplicate instance creation.
+	 * 
+	 * @param string $property The property to create
+	 * @param mixed $object The instance to save
+	 * @return mixed The instance
+	 */
+	
+	private function _singleton($property, $object) {
+		if(property_exists($this, $property) && $this->$property !== null) {
+			return $this->property;
+		}
+		
+		$this->$property = $object;
+		return $this->$property;
 	}
 	
 	/**
@@ -114,5 +122,27 @@ class Flyr {
 		return new Http\Request();
 	}
 	
+	/**
+	 * Supporting overload for create instances
+	 * of required framework components.
+	 * 
+	 * @param string $property The component to create
+	 * @return mixed The instance
+	 */
+	
+	public function __get($property) {
+		switch($property) {
+			case 'session':
+				return $this->_singleton($property, new Components\Session());
+			case 'view':
+				return $this->_singleton($property, new View());
+			case 'url':
+				return $this->_singleton($property, new Http\Url());
+			case 'env':
+				return $this->_singleton($property, new Http\Environment());
+			case 'header':
+				return $this->_singleton($property, new Http\Header());
+		}
+	}
 	
 }
