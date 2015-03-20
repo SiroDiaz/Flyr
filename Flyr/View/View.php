@@ -1,4 +1,4 @@
-<?php namespace Flyr;
+<?php namespace Flyr\View;
 
 class View {
 
@@ -8,7 +8,7 @@ class View {
 		
 		switch(strtolower($extension)) {
 			case 'php':
-				$view = new View\PHP_View($template);
+				$view = new PHP_View($template);
 				if($show === true) {
 					$view->render($params, $show);
 				}else {
@@ -17,7 +17,7 @@ class View {
 				break;
 			case 'twig':
 			case 'html':
-				$view = new View\Twig_View($template);
+				$view = new Twig_View($template);
 				if($show === true) {
 					$view->render($params, $show);
 				}else {

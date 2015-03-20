@@ -135,7 +135,7 @@ class Flyr {
 			case 'session':
 				return $this->_singleton($property, new Components\Session());
 			case 'view':
-				return $this->_singleton($property, new View());
+				return $this->_singleton($property, new View\View());
 			case 'url':
 				return $this->_singleton($property, new Http\Url());
 			case 'env':
