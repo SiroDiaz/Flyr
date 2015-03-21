@@ -53,19 +53,19 @@ class Action {
 	
 	private function _execController($controller) {
 		list($class, $method) = explode(self::SEPARATOR, $controller);
-		$filename = CONTROLLER_PATH ."$controller.php";
+		$filename = CONTROLLER_PATH ."$class.php";
+		
 		if(!file_exists($filename)) {
 			return;
 		}
 		
 		require_once($filename);
-		if(class_exists($class)) {
-			
-		}
-		// require class
-		// create instance
 		
-		return call_user_func_array([$instance, $methodName], $this->params);
+		if(class_exists($class)) {
+			$instance = new $class();
+		}
+		
+		return call_user_func_array([$instance, $method], $this->params);
 	}
 	
 	/**
@@ -81,13 +81,14 @@ class Action {
 					if(is_callable($action)) {
 						$this->_execFunction($action);
 					} elseif(is_string($action)) {
-						$this->_execController();
+						$this->_execController($action);
 					}
 				}
 			} elseif(is_callable($this->actions)) {
 				$this->_execFunction($this->actions);
 			} else {
 				// case action is a string(controller)
+				$this->_execController($this->actions);
 			}
 		}
 	}

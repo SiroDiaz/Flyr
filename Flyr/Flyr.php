@@ -142,6 +142,8 @@ class Flyr {
 				return $this->_singleton($property, new Http\Environment());
 			case 'header':
 				return $this->_singleton($property, new Http\Header());
+			case 'request':
+				return $this->_singleton($property, new Http\Request());
 		}
 	}
 	

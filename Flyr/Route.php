@@ -89,16 +89,15 @@ class Route extends Http\Request {
 				// when * is found load the callback(or controller) and then exit
 				// must be set at the end of routes.php
 				if($this->pattern === '*') {
-					$this->loadCallback($callback);
-					// will be replaced by the following code
-					// $dispatcher = new Action($callback, $this->params);
-					// $dispatcher->run();
+					$dispatcher = new Action($callback, $this->params);
+					$dispatcher->run();
 					self::$found = true;
 					return;
 				}
 				
 				if($this->uriMatches($caseSensitive)) {
-					$this->loadCallback($callback, $this->params);
+					$dispatcher = new Action($callback, $this->params);
+					$dispatcher->run();
 					self::$found = true;
 				}
 			}
@@ -118,14 +117,15 @@ class Route extends Http\Request {
 			$this->setPattern($pattern);
 			if($this->isPost()) {
 				if($this->pattern === '*') {
-					$this->loadCallback($callback);
+					$dispatcher = new Action($callback, $this->params);
+					$dispatcher->run();
 					self::$found = true;
 					return;
 				}
 				
 				if($this->uriMatches($caseSensitive)) {
-					// in this case the params atribute will be replace by $_POST
-					$this->loadCallback($callback, $this->params);
+					$dispatcher = new Action($callback, $this->params);
+					$dispatcher->run();
 					self::$found = true;
 				}
 			}
@@ -146,17 +146,16 @@ class Route extends Http\Request {
 			// parse_str(file_get_contents("php://input"), $_PUT);
 			
 			if($this->isPut()) {
-				// when * is found load the callback(or controller) and then exit
-				// must be set at the end of routes.php
 				if($this->pattern === '*') {
-					$this->loadCallback($callback);
+					$dispatcher = new Action($callback, $this->params);
+					$dispatcher->run();
 					self::$found = true;
 					return;
 				}
 				
 				if($this->uriMatches($caseSensitive)) {
-					// in this case the params atribute will be replace by $_PUT
-					$this->loadCallback($callback, $this->params);
+					$dispatcher = new Action($callback, $this->params);
+					$dispatcher->run();
 					self::$found = true;
 				}
 			}
@@ -176,17 +175,16 @@ class Route extends Http\Request {
 			$this->setPattern($pattern);
 			// parse_str(file_get_contents("php://input"), $_DELETE);
 			if($this->isDelete()) {
-				// when * is found load the callback(or controller) and then exit
-				// must be set at the end of routes.php
 				if($this->pattern === '*') {
-					$this->loadCallback($callback);
+					$dispatcher = new Action($callback, $this->params);
+					$dispatcher->run();
 					self::$found = true;
 					return;
 				}
 					
 				if($this->uriMatches($caseSensitive)) {
-					// in this case the params atribute will be replace by $_PUT
-					$this->loadCallback($callback, $this->params);
+					$dispatcher = new Action($callback, $this->params);
+					$dispatcher->run();
 					self::$found = true;
 				}
 			}
@@ -330,42 +328,5 @@ class Route extends Http\Request {
 		
 		return false;
 	 }
-	 
-	
-	/**
-	 * Execute the callback or the method from a class controller.
-	 * 
-	 * @param mixed $callback a function or controller
-	 * @param mixed $params null for no parameters
-	 */
-	
-	private function loadCallback($callback = null, $params = []) {
-		
-		if($callback === null) {
-			return;
-		}
-		
-		if(is_callable($callback)) {		// if the callback is a function then execute it
-			if(count($params) !== 0) {			// in exists any param then pass it to the function
-				return call_user_func_array($callback, $params);
-			}
-			
-			return $callback();
-		} else {
-			if(strpos($callback, self::SEPARATOR) !== false) {	// case is a string like this: 'class@method'
-				list($className, $methodName) = explode(self::SEPARATOR, $callback);
-				// load the class file (use the defined CONTROLLER_PATH, placed in config/config.php)
-				require CONTROLLER_PATH ."$className.php";
-				
-				if(class_exists($className) && method_exists($className, $methodName)){
-					$instance = new $className();	// new class instance
-					if(count($params) !== 0) {
-						return call_user_func_array([$instance, $methodName], $params);
-					}
-					
-					return $instance->$methodName();
-				}
-			}
-		}
-	}
+
 }
