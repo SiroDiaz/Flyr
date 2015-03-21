@@ -2,6 +2,8 @@
 
 class Action {
 	
+	const SEPARATOR = '@';		// the separator between the class name and the method name
+	
 	private $actions;
 	
 	private $params;
@@ -50,7 +52,16 @@ class Action {
 	 */
 	
 	private function _execController($controller) {
-		// check if class file exists
+		list($class, $method) = explode(self::SEPARATOR, $controller);
+		$filename = CONTROLLER_PATH ."$controller.php";
+		if(!file_exists($filename)) {
+			return;
+		}
+		
+		require_once($filename);
+		if(class_exists($class)) {
+			
+		}
 		// require class
 		// create instance
 		
@@ -60,22 +71,23 @@ class Action {
 	/**
 	 * Ececute the queue of callbacks or controllers
 	 * in the order in which callbacks were defined.
-	 * 
-	 * @return null only if actions are not a
 	 */
 	
 	public function run() {
 		
-		if($this->_areValidActions())
+		if($this->_areValidActions()) {
 			if (is_array($this->actions)) {
 				foreach ($this->actions as $action) {
-					$this->_execFunction($action);
+					if(is_callable($action)) {
+						$this->_execFunction($action);
+					} elseif(is_string($action)) {
+						$this->_execController();
+					}
 				}
 			} elseif(is_callable($this->actions)) {
-				
+				$this->_execFunction($this->actions);
 			} else {
 				// case action is a string(controller)
-				
 			}
 		}
 	}

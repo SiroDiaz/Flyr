@@ -65,7 +65,7 @@ class Route extends Http\Request {
 	/**
 	 * Set the pattern and put it to lowercase.
 	 * 
-	 * @return boolean
+	 * @return bool
 	 */
 	
 	public function setPattern($pattern) {
@@ -90,6 +90,9 @@ class Route extends Http\Request {
 				// must be set at the end of routes.php
 				if($this->pattern === '*') {
 					$this->loadCallback($callback);
+					// will be replaced by the following code
+					// $dispatcher = new Action($callback, $this->params);
+					// $dispatcher->run();
 					self::$found = true;
 					return;
 				}
