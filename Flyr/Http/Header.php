@@ -31,8 +31,8 @@ class Header {
 	}
 	
 	public function lastModified($timestamp) {
-		header('Last-Modified:'. date(DATE_RFC1123, $timestamp));
-		header('If-Modified-Since:'. date(DATE_RFC1123, $timestamp));
+		header('Last-Modified: '. date(DATE_RFC1123, $timestamp));
+		header('If-Modified-Since: '. date(DATE_RFC1123, $timestamp));
 	}
 	
 	/**

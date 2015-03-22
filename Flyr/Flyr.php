@@ -4,7 +4,6 @@ class Flyr {
 	
 	public $cookie;
 	public $load;
-	public $log;
 	public $mail;
 	private $route;
 	
@@ -14,7 +13,6 @@ class Flyr {
 	
 	public function __construct() {
 		$this->cookie = new Http\Cookie();
-		$this->log = new Components\Logger();
 		$this->load = new Loader();
 		$this->mail = new Mail();
 		$this->route = new Route();
@@ -144,6 +142,8 @@ class Flyr {
 				return $this->_singleton($property, new Http\Header());
 			case 'request':
 				return $this->_singleton($property, new Http\Request());
+			case 'log':
+				return $this->_singleton($property, new Components\Logger());
 		}
 	}
 	
