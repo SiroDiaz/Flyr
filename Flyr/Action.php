@@ -77,7 +77,9 @@ class Action {
 		
 		if($this->_areValidActions()) {
 			if (is_array($this->actions)) {
+				
 				foreach ($this->actions as $action) {
+					
 					if(is_callable($action)) {
 						$this->_execFunction($action);
 					} elseif(is_string($action)) {
@@ -87,8 +89,7 @@ class Action {
 			} elseif(is_callable($this->actions)) {
 				$this->_execFunction($this->actions);
 			} else {
-				// case action is a string(controller)
-				$this->_execController($this->actions);
+				$this->_execController($this->actions);	// case action is a string(controller)
 			}
 		}
 	}

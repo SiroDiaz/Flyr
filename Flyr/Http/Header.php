@@ -30,6 +30,11 @@ class Header {
 		return headers_list();
 	}
 	
+	public function lastModified($timestamp) {
+		header('Last-Modified:'. date(DATE_RFC1123, $timestamp));
+		header('If-Modified-Since:'. date(DATE_RFC1123, $timestamp));
+	}
+	
 	/**
 	 * Redirects to the given URL.
 	 * 
