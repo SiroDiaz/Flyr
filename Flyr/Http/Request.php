@@ -7,6 +7,12 @@ class Request {
 	const PUT_METHOD = 'PUT';
 	const DELETE_METHOD = 'DELETE';
 	
+	/**
+	 * The method used for the request.
+	 * 
+	 * @var string
+	 */
+	
 	protected $method;
 	
 	public function __construct() {
@@ -69,5 +75,83 @@ class Request {
 	
 	public function isDelete() {
 		return $this->getMethod() === self::DELETE_METHOD;
+	}
+	
+	/**
+	 * Checks if the request has been used via AJAX.
+	 * Sometimes it can not work properly by server problems
+	 * but most JavaScript frameworks send 'X-Requested-With'
+	 * header tag containing 'XMLHttpRequest'.
+	 * 
+	 * @return bool
+	 */
+	
+	public function isAjax() {
+		$header = new Header();
+		$headers = $header->get();
+		return isset($headers['X-Requested-With']) && $headers['X-Requested-With'] === 'XMLHttpRequest';
+	}
+	
+	/**
+	 * Fetch GET data.
+	 * Returns the query string from the URL
+	 * and converts it to an array.
+	 * 
+	 * @return array The key:value from URL query
+	 */
+	
+	public function getData() {
+		$data = [];
+		$url = new Url();
+		
+		if(function_exists('mb_parse_str')) {
+			return mb_parse_str($url->getQuery(), $data);
+		} else {
+			return parse_str($url->getQuery(), $data);
+		}
+	}
+	
+	/**
+	 * Fetch POST data.
+	 * Return the $_POST data and converts it to an array.
+	 * 
+	 * @return array The key:value from php input
+	 */
+	
+	public function postData() {
+		$input = file_get_contents('php://input');
+		$outputData = [];
+		
+		if(function_exists('mb_parse_str')) {
+			mb_parse_str($input, $outputData);
+		} else {
+			parse_str($input, $outputData);
+		}
+		
+		return $outputData;
+	}
+	
+	/**
+	 * Fetch PUT data.
+	 * Return data incoming from PHP input as
+	 * an array.
+	 * 
+	 * @return array
+	 */
+	
+	public function putData() {
+		return $this->postData();
+	}
+	
+	/**
+	 * Fetch DELETE data.
+	 * Return data incoming from PHP input as
+	 * an array.
+	 * 
+	 * @return array
+	 */
+	
+	public function deleteData() {
+		return $this->postData();
 	}
 }

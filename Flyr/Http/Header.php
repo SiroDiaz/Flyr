@@ -27,7 +27,7 @@ class Header {
 	 */
 	
 	public function get() {
-		return headers_list();
+		return getallheaders();
 	}
 	
 	public function lastModified($timestamp) {

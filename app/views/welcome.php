@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Welcome to Flyr</title>
+	<script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="public/css/bootstrap.min.css">
 	
