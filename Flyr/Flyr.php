@@ -2,9 +2,37 @@
 
 class Flyr {
 	
+	/**
+	 * Instance of Cookie class.
+	 * 
+	 * @var $cookie
+	 */
+	 
 	public $cookie;
+	
+	/**
+	 * Instance of Loader.
+	 * 
+	 * @var $load 
+	 */
+	 
 	public $load;
+	
+	/**
+	 * Mail instance.
+	 * 
+	 * @var $mail
+	 */
+	 
 	public $mail;
+	
+	/**
+	 * Router instance for provide
+	 * a hight level route API.
+	 * 
+	 * @var $route
+	 */
+	 
 	private $route;
 	
 	/**
