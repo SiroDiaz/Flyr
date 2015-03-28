@@ -2,10 +2,36 @@
 
 class Route extends Http\Request {
 	
-	const SEPARATOR = '@';			// the separator between the class name and the method name
-	private static $found = false;	// it is used to stop checking requests
-	private $pattern;				// the uri pattern
+	/**
+	 * It is used to stop checking requests.
+	 * 
+	 * @var $found
+	 */
+	 
+	private static $found = false;
+	
+	/**
+	 * The uri pattern.
+	 * 
+	 * @var $pattern
+	 */
+	
+	private $pattern;
+	
+	/**
+	 * Url instance for manage the Uri.
+	 * 
+	 * @var $url
+	 */
+	 
 	private $url;
+	
+	/**
+	 * The parameters from the Uri.
+	 * 
+	 * @var $params
+	 */
+	
 	private $params;
 	
 	public function __construct() {
