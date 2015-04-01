@@ -4,8 +4,20 @@ class Action {
 	
 	const SEPARATOR = '@';		// the separator between the class name and the method name
 	
+	/**
+	 * The callbacks and/or controllers to execute.
+	 * 
+	 * @var $actions
+	 */
+	 
 	private $actions;
 	
+	/**
+	 * Parameters to pass to the callbacks and controllers.
+	 * 
+	 * @var $params
+	 */
+	 
 	private $params;
 	
 	public function __construct($actions, $params = []) {
