@@ -31,11 +31,6 @@ class View {
 	
 	public function JSON($data) {
 		header('Content-Type: application/json');
-		session_write_close();
-		ob_flush();
-		flush();
 		echo json_encode($data);
-		ob_flush();
-		flush();
 	}
 }

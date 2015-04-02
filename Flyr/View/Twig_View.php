@@ -20,12 +20,7 @@ class Twig_View extends ViewAbstract {
 		
 		if($this->exists()) {
 			if($show) {
-				session_write_close();
-				ob_flush();
-				flush();
 				echo $this->twig->render($this->getTemplate(), $params);
-				ob_flush();
-				flush();
 			} else {
 				return $this->twig->render($this->getTemplate(), $params);
 			}

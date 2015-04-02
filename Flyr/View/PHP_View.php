@@ -21,13 +21,8 @@ class PHP_View extends ViewAbstract {
             	extract($params);
         	}
 			
-			if($show) {			
-				session_write_close();
-				ob_flush();
-				flush();
+			if($show) {
 				require $this->getFolder() . $this->getTemplate();
-				ob_flush();
-				flush();
 			} else {
 				ob_start();
 				require($this->getFolder() . $this->getTemplate());
