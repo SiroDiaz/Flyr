@@ -6,6 +6,7 @@ class Request {
 	const POST_METHOD = 'POST';
 	const PUT_METHOD = 'PUT';
 	const DELETE_METHOD = 'DELETE';
+	const PATCH_METHOD = 'PATCH';
 	
 	/**
 	 * The method used for the request.
@@ -75,6 +76,17 @@ class Request {
 	
 	public function isDelete() {
 		return $this->getMethod() === self::DELETE_METHOD;
+	}
+	// http://www.confusedbycode.com/curl/
+	
+	/**
+	 * Checks if it is a PATCH request.
+	 * 
+	 * @return bool
+	 */
+	
+	public function isPatch() {
+		return $this->getMethod() === self::PATCH_METHOD;
 	}
 	
 	/**
