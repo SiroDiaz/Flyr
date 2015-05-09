@@ -218,6 +218,34 @@ class Route extends Http\Request {
 	}
 	
 	/**
+	 * Execute the PATCH request.
+	 * 
+	 * @param string $pattern The requested uri pattern
+	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
+	 */
+	
+	public function delete($pattern, $callback = null, $caseSensitive = false) {
+		if(!self::$found) {
+			$this->setPattern($pattern);
+			if($this->isPatch()) {
+				if($this->pattern === '*') {
+					$dispatcher = new Action($callback, $this->params);
+					$dispatcher->run();
+					self::$found = true;
+					return;
+				}
+					
+				if($this->uriMatches($caseSensitive)) {
+					$dispatcher = new Action($callback, $this->params);
+					$dispatcher->run();
+					self::$found = true;
+				}
+			}
+		}
+	}
+	
+	/**
 	 * It respond the same for any passed callback.
 	 * 
 	 * @param array $methods The request methods availables for matching
@@ -242,8 +270,10 @@ class Route extends Http\Request {
 			$this->put($pattern, $callback, $caseSensitive);
 		} elseif($this->isDelete() && in_array('DELETE', $methods)) {
 			$this->delete($pattern, $callback, $caseSensitive);
+		} elseif($this->isPatch() && in_array('PATCH', $methods)) {
+			$this->patch($pattern, $callback, $caseSensitive);
 		} else {
-			// in case of 
+			// in case of unknow request method set by default GET method
 			$this->get($pattern, $callback, $caseSensitive);
 		}
 	}
