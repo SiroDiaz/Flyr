@@ -225,7 +225,7 @@ class Route extends Http\Request {
 	 * @param bool $caseSensitive (default false)
 	 */
 	
-	public function delete($pattern, $callback = null, $caseSensitive = false) {
+	public function patch($pattern, $callback = null, $caseSensitive = false) {
 		if(!self::$found) {
 			$this->setPattern($pattern);
 			if($this->isPatch()) {

@@ -113,6 +113,18 @@ class Flyr {
 	}
 	
 	/**
+	 * Generate a delete router.
+	 * 
+	 * @param string $pattern The requested uri pattern
+	 * @param mixed $callback A function or a class method
+	 * @param bool $caseSensitive (default false)
+	 */
+	
+	public function patch($pattern, $callback = null, $caseSensitive = false) {
+		$this->route->patch($pattern, $callback, $caseSensitive);
+	}
+	
+	/**
 	 * Responses to any matched HTTP request method.
 	 * 
 	 * @param array $methods Valid methods for this uri pattern
