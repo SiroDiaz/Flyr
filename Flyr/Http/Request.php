@@ -77,7 +77,6 @@ class Request {
 	public function isDelete() {
 		return $this->getMethod() === self::DELETE_METHOD;
 	}
-	// http://www.confusedbycode.com/curl/
 	
 	/**
 	 * Checks if it is a PATCH request.
