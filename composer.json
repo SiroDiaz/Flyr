@@ -2,6 +2,7 @@
     "name": "flyr/flyr",
     "description": "The micro PHP Framework based for develop fast REST applications.",
     "license": "MIT",
+    "version": "1.0",
     "keywords": ["framework", "flyr"],
     "authors": [
         {
