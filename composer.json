@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "twig/twig": "~1.0",
-        "phpmailer/phpmailer": "5.*"
+        "psr/http-message": "^1.0",
+        "nikic/fast-route": "^1.2"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.3.1"
